@@ -1,7 +1,9 @@
+import { signInWithPopup } from "firebase/auth";
 import Head from "next/head";
 import Image from "next/image";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
 
 interface Inputs {
   email: string;
@@ -9,12 +11,22 @@ interface Inputs {
 }
 
 function login() {
+  const [login, setLogin] = useState(false);
+  const { signIn, signUp } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = async (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+    if (login) {
+      await signIn(email, password);
+    } else {
+      await signUp(email, password);
+    }
+  };
   return (
     <div className="relative flex h-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent">
       <Head>
@@ -72,6 +84,7 @@ function login() {
           </label>
         </div>
         <button
+          onClick={() => setLogin(true)}
           type="submit"
           className="w-full rounded bg-[#e50914] py-3 font-semibold"
         >
@@ -89,6 +102,7 @@ function login() {
         <div className="text-[gray]">
           New To Netflix?{" "}
           <button
+            onClick={() => setLogin(false)}
             type="submit"
             className="text-white hover:underline cursor-pointer "
           >
