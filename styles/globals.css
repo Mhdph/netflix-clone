@@ -9,13 +9,16 @@
   header {
     @apply fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6;
   }
-  input {
-    @apply w-full rounded bg-[#333] px-5 py-3.5 placeholder-[gray] focus:outline-none outline-none focus:bg-[#454545];
-  }
 }
 
 @layer components {
   .bannerButton {
     @apply flex items-center gap-x-2 rounded py-1.5  text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
+  }
+  .modalButton {
+    @apply flex h-8 w-8 md:h-11 md:w-11 items-center justify-center rounded-full border-2 border-[gray] bg-[#2e2e2a]/60 transition-all hover:border-white hover:bg-white/10;
+  }
+  .input {
+    @apply w-full rounded bg-[#333] px-5 py-3.5 placeholder-[gray] focus:outline-none outline-none focus:bg-[#454545];
   }
 }
