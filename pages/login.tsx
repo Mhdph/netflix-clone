@@ -10,7 +10,7 @@ interface Inputs {
   password: string;
 }
 
-function login() {
+function Login() {
   const [login, setLogin] = useState(false);
   const { signIn, signUp } = useAuth();
 
@@ -34,12 +34,14 @@ function login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Image
+        alt="login"
         src="https://rb.gy/p2hphi"
         layout="fill"
         objectFit="cover"
         className="-z-10 !hidden opacity-50 sm:!inline"
       />
       <img
+        alt="login"
         width={150}
         height={150}
         src="https://rb.gy/ulxxee"
@@ -114,4 +116,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
